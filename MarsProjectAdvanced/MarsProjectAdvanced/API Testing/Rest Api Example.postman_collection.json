@@ -1,0 +1,540 @@
+{
+	"info": {
+		"_postman_id": "1ca8bfcc-4ab4-463c-8581-f07c4cecd2d2",
+		"name": "Rest Api Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24054391"
+	},
+	"item": [
+		{
+			"name": "Employee Data",
+			"item": [
+				{
+					"name": "Create New Employee Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Create Employee Data\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.name).to.eql(\"roshi\");\r",
+									"    pm.expect(jsonData.data.salary).to.eql(\"2000\");\r",
+									"    pm.expect(jsonData.data.age).to.eql(\"25\");\r",
+									"    pm.environment.set(\"employeeID\", jsonData.data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"roshi\",\r\n    \"salary\": \"2000\",\r\n    \"age\": \"25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/create",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create New Employee Data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"roshi\",\r\n    \"salary\": \"2000\",\r\n    \"age\": \"25\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/create",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 21 Feb 2023 04:39:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=21600"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Upgrade",
+									"value": "h2,h2c"
+								},
+								{
+									"key": "Connection",
+									"value": "Upgrade"
+								},
+								{
+									"key": "Expires",
+									"value": "Tue, 21 Feb 2023 10:39:54 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "host-header",
+									"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+								},
+								{
+									"key": "X-Endurance-Cache-Level",
+									"value": "2"
+								},
+								{
+									"key": "X-nginx-cache",
+									"value": "WordPress"
+								},
+								{
+									"key": "Content-Length",
+									"value": "126"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"name\": \"roshi\",\n        \"salary\": \"2000\",\n        \"age\": \"25\",\n        \"id\": 3837\n    },\n    \"message\": \"Successfully! Record has been added.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update An Employee Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Update Employee Data\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.name).to.eql(\"roshei\");\r",
+									"    pm.expect(jsonData.data.salary).to.eql(\"2300\");\r",
+									"    pm.expect(jsonData.data.age).to.eql(\"30\");\r",
+									"    pm.environment.set(\"employeeID\", jsonData.data.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"roshei\",\r\n    \"salary\": \"2300\",\r\n    \"age\": \"30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/update/{{employeeID}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"update",
+								"{{employeeID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update An Employee Data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"roshei\",\r\n    \"salary\": \"2300\",\r\n    \"age\": \"30\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/update/{{employeeID}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"update",
+										"{{employeeID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 21 Feb 2023 04:40:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=21600"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Upgrade",
+									"value": "h2,h2c"
+								},
+								{
+									"key": "Connection",
+									"value": "Upgrade"
+								},
+								{
+									"key": "Expires",
+									"value": "Tue, 21 Feb 2023 10:40:54 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "host-header",
+									"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+								},
+								{
+									"key": "X-Endurance-Cache-Level",
+									"value": "2"
+								},
+								{
+									"key": "X-nginx-cache",
+									"value": "WordPress"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"name\": \"roshei\",\n        \"salary\": \"2300\",\n        \"age\": \"30\"\n    },\n    \"message\": \"Successfully! Record has been updated.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete An Employee Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Delete Employee Data\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+									"    pm.expect(jsonData.data).to.eql( pm.environment.get(\"employeeID\").toString());\r",
+									"    pm.expect(jsonData.message).to.eql(\"Successfully! Record has been deleted\");\r",
+									"\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/delete/{{employeeID}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"delete",
+								"{{employeeID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete An Employee Data",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrl}}/delete/{{employeeID}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"delete",
+										"{{employeeID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 21 Feb 2023 04:41:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=21600"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Upgrade",
+									"value": "h2,h2c"
+								},
+								{
+									"key": "Connection",
+									"value": "Upgrade"
+								},
+								{
+									"key": "Expires",
+									"value": "Tue, 21 Feb 2023 10:41:54 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "host-header",
+									"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+								},
+								{
+									"key": "X-Endurance-Cache-Level",
+									"value": "2"
+								},
+								{
+									"key": "X-nginx-cache",
+									"value": "WordPress"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": \"3837\",\n    \"message\": \"Successfully! Record has been deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Get Single Employee Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/employee/1",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"employee",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Single Employee Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/employee/1",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"employee",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 21 Feb 2023 03:31:35 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.21.6"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "152"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=21600"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Expires",
+							"value": "Tue, 21 Feb 2023 09:31:34 GMT"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "host-header",
+							"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+						},
+						{
+							"key": "X-Endurance-Cache-Level",
+							"value": "2"
+						},
+						{
+							"key": "X-nginx-cache",
+							"value": "WordPress"
+						},
+						{
+							"key": "X-Server-Cache",
+							"value": "false"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"id\": 1,\n        \"employee_name\": \"Tiger Nixon\",\n        \"employee_salary\": 320800,\n        \"employee_age\": 61,\n        \"profile_image\": \"\"\n    },\n    \"message\": \"Successfully! Record has been fetched.\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseUrl",
+			"value": "\thttps://dummy.restapiexample.com/api/v1"
+		}
+	]
+}
