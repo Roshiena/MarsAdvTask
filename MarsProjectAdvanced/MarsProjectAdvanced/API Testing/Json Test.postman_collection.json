@@ -17,6 +17,26 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
+							"var schema = {\r",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"ip\": {\r",
+							"      \"type\": \"string\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"ip\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"var jsonResp = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.test('Validate schema of Get IP', function () {\r",
+							"    pm.expect(tv4.validate(jsonResp, schema)).to.be.true;\r",
+							"  \r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript"
@@ -39,7 +59,58 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get IP Address",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{ipAddress}}.jsontest.com/",
+							"protocol": "http",
+							"host": [
+								"{{ipAddress}}",
+								"jsontest",
+								"com"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "c590c419322e73cca26a81cae756d43c"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 09:20:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "24"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ip\": \"219.74.13.247\"\n}"
+				}
+			]
 		}
 	],
 	"event": [

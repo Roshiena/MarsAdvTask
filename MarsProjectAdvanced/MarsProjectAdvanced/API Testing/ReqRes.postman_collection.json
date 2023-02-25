@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "4ac146fe-1e98-469a-b5ac-78778fd0e326",
+		"name": "ReqRes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24054391"
+	},
+	"item": [
+		{
+			"name": "Get List Of Users (Filter Page and per page)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var schema = {\r",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"page\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"per_page\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"total\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"total_pages\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"data\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"email\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"first_name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"last_name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"avatar\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"email\",\r",
+							"            \"first_name\",\r",
+							"            \"last_name\",\r",
+							"            \"avatar\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"email\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"first_name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"last_name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"avatar\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"email\",\r",
+							"            \"first_name\",\r",
+							"            \"last_name\",\r",
+							"            \"avatar\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"email\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"first_name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"last_name\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"avatar\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"email\",\r",
+							"            \"first_name\",\r",
+							"            \"last_name\",\r",
+							"            \"avatar\"\r",
+							"          ]\r",
+							"        }\r",
+							"      ]\r",
+							"    },\r",
+							"    \"support\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"url\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"text\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"url\",\r",
+							"        \"text\"\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"page\",\r",
+							"    \"per_page\",\r",
+							"    \"total\",\r",
+							"    \"total_pages\",\r",
+							"    \"data\",\r",
+							"    \"support\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"var jsonResp = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.test('Validate Schema of Get Users', function () {\r",
+							"    pm.expect(tv4.validate(jsonResp, schema)).to.be.true;\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}api/users?page=2&per_page=3",
+					"host": [
+						"{{BaseUrl}}api"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "per_page",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get List Of Users (Filter Page and per page)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}api/users?page=2&per_page=3",
+							"host": [
+								"{{BaseUrl}}api"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "per_page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 08:59:31 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"255-LSo4dnZqSos9d+SNQafGTY4hv4c\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=14400"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "HIT"
+						},
+						{
+							"key": "Age",
+							"value": "25"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=u47hh1DnHe57eqDFv5%2F0V0Qr3FsNO3F8celW4ABWsdqybLWutaCZYXztTcnqOtUrA9Ils%2FuK4dwTgsmdE4aRxpMNd%2Fa%2BOUd68UKQgZf7H9a0Ot0fRAHVANRaRA%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "79ef3ed04c264993-SIN"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"page\": 2,\n    \"per_page\": 3,\n    \"total\": 12,\n    \"total_pages\": 4,\n    \"data\": [\n        {\n            \"id\": 4,\n            \"email\": \"eve.holt@reqres.in\",\n            \"first_name\": \"Eve\",\n            \"last_name\": \"Holt\",\n            \"avatar\": \"https://reqres.in/img/faces/4-image.jpg\"\n        },\n        {\n            \"id\": 5,\n            \"email\": \"charles.morris@reqres.in\",\n            \"first_name\": \"Charles\",\n            \"last_name\": \"Morris\",\n            \"avatar\": \"https://reqres.in/img/faces/5-image.jpg\"\n        },\n        {\n            \"id\": 6,\n            \"email\": \"tracey.ramos@reqres.in\",\n            \"first_name\": \"Tracey\",\n            \"last_name\": \"Ramos\",\n            \"avatar\": \"https://reqres.in/img/faces/6-image.jpg\"\n        }\n    ],\n    \"support\": {\n        \"url\": \"https://reqres.in/#support-heading\",\n        \"text\": \"To keep ReqRes free, contributions towards server costs are appreciated!\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get User ID 2 Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}api/users/:id",
+					"host": [
+						"{{BaseUrl}}api"
+					],
+					"path": [
+						"users",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get User ID 2 Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}api/users/:id",
+							"host": [
+								"{{BaseUrl}}api"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 05:10:19 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"118-pbdwwFo9SKNhD3Lx5iHJyngpq00\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=14400"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "HIT"
+						},
+						{
+							"key": "Age",
+							"value": "6750"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=szujT6TrqzmqMLktnfzaAUXidngZp1CzSR8smCI1Hpqlk%2FFVFRcbssMxOC2wUy05LM5QNSKDrfYwjAIM%2BiCnEyDV%2F%2FNQ17SGMjCc9W6lnBhdqLMLEXE8aWOPVQ%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "79edef111f2989b2-SIN"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 2,\n        \"email\": \"janet.weaver@reqres.in\",\n        \"first_name\": \"Janet\",\n        \"last_name\": \"Weaver\",\n        \"avatar\": \"https://reqres.in/img/faces/2-image.jpg\"\n    },\n    \"support\": {\n        \"url\": \"https://reqres.in/#support-heading\",\n        \"text\": \"To keep ReqRes free, contributions towards server costs are appreciated!\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Invalid Value EndPoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 800ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}api/users/25",
+					"host": [
+						"{{BaseUrl}}api"
+					],
+					"path": [
+						"users",
+						"25"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Invalid Value EndPoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}api/users/25",
+							"host": [
+								"{{BaseUrl}}api"
+							],
+							"path": [
+								"users",
+								"25"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 07:53:15 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=14400"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "HIT"
+						},
+						{
+							"key": "Age",
+							"value": "78"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=CWZMwDWUPOUIVUWHxRqyvQQ%2F28MJxq8lFJhP%2BibS0zag4%2BEp37p2sFaTJAucj2Zjrc4Bdn6K%2FqJoRSx2hMMBZq4CrIXR8Av64up%2BM4e886cOF3LPMkTTongXpg%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "79eeddc13cd46bee-SIN"
+						}
+					],
+					"cookie": [],
+					"body": "{}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseUrl",
+			"value": "https://reqres.in/"
+		}
+	]
+}

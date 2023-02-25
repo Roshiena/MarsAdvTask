@@ -22,10 +22,10 @@ namespace MarsProjectAdvanced.StepDefinition
         }
 
 
-
         [When(@"I add '([^']*)' and '([^']*)' to profile")]
         public void WhenIAddAndToProfile(string skills, string level)
         {
+           
             skillsPageObj.AddSkills(skills, level);
         }
 
@@ -73,12 +73,13 @@ namespace MarsProjectAdvanced.StepDefinition
                 string deletedLevel = skillsPageObj.DeletedLevel();
                 Assert.That(deletedSkills != skills, "Actual skills and expected skills do not match");
                 Assert.That(deletedLevel != level, "Actual level and expected levels do not match");
+               
             }
         }
 
     }
-    
-    
+
+
 
 }
 

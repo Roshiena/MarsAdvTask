@@ -1,4 +1,5 @@
 ﻿using MarsProjectAdvanced.Utitlities;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,9 @@ namespace MarsProjectAdvanced.Hooks
 {
     [Binding]
     public sealed class Driver1 : CommonDriver
+
     {
-
-
         [BeforeScenario]
-
         public void Setup()
         {
 
@@ -24,8 +23,8 @@ namespace MarsProjectAdvanced.Hooks
 
 
 
-
         [AfterScenario]
+
         public void TearDown()
         {
 
