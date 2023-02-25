@@ -531,6 +531,53 @@
 					"body": "{}"
 				}
 			]
+		},
+		{
+			"name": "Unsuccessful  Registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is not 200\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response shows Bad Request\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Bad Request\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"charles.morris@reqres.in\",\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}api/register",
+					"host": [
+						"{{BaseUrl}}api"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
