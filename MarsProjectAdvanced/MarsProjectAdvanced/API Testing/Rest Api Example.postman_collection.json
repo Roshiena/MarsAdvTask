@@ -1,0 +1,960 @@
+{
+	"info": {
+		"_postman_id": "1ca8bfcc-4ab4-463c-8581-f07c4cecd2d2",
+		"name": "Rest Api Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24054391"
+	},
+	"item": [
+		{
+			"name": "Employee Data",
+			"item": [
+				{
+					"name": "Create New Employee Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Create Employee Data\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.name).to.eql(\"roshi\");\r",
+									"    pm.expect(jsonData.data.salary).to.eql(\"2000\");\r",
+									"    pm.expect(jsonData.data.age).to.eql(\"25\");\r",
+									"    pm.environment.set(\"employeeID\", jsonData.data.id);\r",
+									"});\r",
+									"\r",
+									"var schema = {\r",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"status\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"data\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"salary\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"age\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"id\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"name\",\r",
+									"        \"salary\",\r",
+									"        \"age\",\r",
+									"        \"id\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"message\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"status\",\r",
+									"    \"data\",\r",
+									"    \"message\"\r",
+									"  ]\r",
+									"};\r",
+									"\r",
+									"var jsonResp = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test('Validate Schema of Create Employee Data', function () {\r",
+									"    pm.expect(tv4.validate(jsonResp, schema)).to.be.true;\r",
+									"   \r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"roshi\",\r\n    \"salary\": \"2000\",\r\n    \"age\": \"25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/create",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create New Employee Data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"roshi\",\r\n    \"salary\": \"2000\",\r\n    \"age\": \"25\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/create",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 25 Feb 2023 09:04:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=21600"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Upgrade",
+									"value": "h2,h2c"
+								},
+								{
+									"key": "Connection",
+									"value": "Upgrade"
+								},
+								{
+									"key": "Expires",
+									"value": "Sat, 25 Feb 2023 15:04:07 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "host-header",
+									"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+								},
+								{
+									"key": "X-Endurance-Cache-Level",
+									"value": "2"
+								},
+								{
+									"key": "X-nginx-cache",
+									"value": "WordPress"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"name\": \"roshi\",\n        \"salary\": \"2000\",\n        \"age\": \"25\",\n        \"id\": 2329\n    },\n    \"message\": \"Successfully! Record has been added.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update An Employee Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Update Employee Data\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.name).to.eql(\"roshei\");\r",
+									"    pm.expect(jsonData.data.salary).to.eql(\"2300\");\r",
+									"    pm.expect(jsonData.data.age).to.eql(\"30\");\r",
+									"\r",
+									"});\r",
+									"\r",
+									"var schema = {\r",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"status\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"data\": {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"name\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"salary\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"age\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"name\",\r",
+									"        \"salary\",\r",
+									"        \"age\"\r",
+									"      ]\r",
+									"    },\r",
+									"    \"message\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"status\",\r",
+									"    \"data\",\r",
+									"    \"message\"\r",
+									"  ]\r",
+									"};\r",
+									"\r",
+									"var jsonResp = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test('Validate Schema of Updated Record', function () {\r",
+									"    pm.expect(tv4.validate(jsonResp, schema)).to.be.true;\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"roshei\",\r\n    \"salary\": \"2300\",\r\n    \"age\": \"30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/update/{{employeeID}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"update",
+								"{{employeeID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update An Employee Data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"roshei\",\r\n    \"salary\": \"2300\",\r\n    \"age\": \"30\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/update/{{employeeID}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"update",
+										"{{employeeID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 25 Feb 2023 09:07:03 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=21600"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Upgrade",
+									"value": "h2,h2c"
+								},
+								{
+									"key": "Connection",
+									"value": "Upgrade"
+								},
+								{
+									"key": "Expires",
+									"value": "Sat, 25 Feb 2023 15:07:03 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "host-header",
+									"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+								},
+								{
+									"key": "X-Endurance-Cache-Level",
+									"value": "2"
+								},
+								{
+									"key": "X-nginx-cache",
+									"value": "WordPress"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"name\": \"roshei\",\n        \"salary\": \"2300\",\n        \"age\": \"30\"\n    },\n    \"message\": \"Successfully! Record has been updated.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete An Employee Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Delete Employee Data\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+									"    pm.expect(jsonData.data).to.eql( pm.environment.get(\"employeeID\").toString());\r",
+									"    pm.expect(jsonData.message).to.eql(\"Successfully! Record has been deleted\");\r",
+									"\r",
+									"});\r",
+									"\r",
+									"var schema = {\r",
+									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"status\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"data\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"message\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"status\",\r",
+									"    \"data\",\r",
+									"    \"message\"\r",
+									"  ]\r",
+									"};\r",
+									"\r",
+									"var jsonResp = pm.response.json();\r",
+									"\r",
+									"pm.test('Validate Schema of Deleted Record', function () {\r",
+									"    pm.expect(tv4.validate(jsonResp, schema)).to.be.true;\r",
+									"   \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/delete/{{employeeID}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"delete",
+								"{{employeeID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete An Employee Data",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrl}}/delete/{{employeeID}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"delete",
+										"{{employeeID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 25 Feb 2023 09:10:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "max-age=21600"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Upgrade",
+									"value": "h2,h2c"
+								},
+								{
+									"key": "Connection",
+									"value": "Upgrade"
+								},
+								{
+									"key": "Expires",
+									"value": "Sat, 25 Feb 2023 15:10:33 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "host-header",
+									"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+								},
+								{
+									"key": "X-Endurance-Cache-Level",
+									"value": "2"
+								},
+								{
+									"key": "X-nginx-cache",
+									"value": "WordPress"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": \"2329\",\n    \"message\": \"Successfully! Record has been deleted\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Record that Doesnot Exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is not 200\", function () {\r",
+									"    pm.response.to.have.status(429);\r",
+									"\r",
+									"pm.test(\"Response time is less than 800ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+									"});\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/delete/9999999999",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"delete",
+								"9999999999"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Record that Doesnot Exist",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/delete/9999999999",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"delete",
+										"9999999999"
+									]
+								}
+							},
+							"status": "Too Many Requests",
+							"code": 429,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 25 Feb 2023 07:47:30 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "54"
+								},
+								{
+									"key": "retry-after",
+									"value": "2"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1677311252"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "host-header",
+									"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+								},
+								{
+									"key": "X-Endurance-Cache-Level",
+									"value": "2"
+								},
+								{
+									"key": "X-nginx-cache",
+									"value": "WordPress"
+								},
+								{
+									"key": "Content-Length",
+									"value": "595"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        <title>Too Many Requests</title>\n        <!-- Fonts -->\n        <link rel=\"dns-prefetch\" href=\"//fonts.gstatic.com\">\n        <link href=\"https://fonts.googleapis.com/css?family=Nunito\" rel=\"stylesheet\">\n        <!-- Styles -->\n        <style>\n            html, body {\n                background-color: #fff;\n                color: #636b6f;\n                font-family: 'Nunito', sans-serif;\n                font-weight: 100;\n                height: 100vh;\n                margin: 0;\n            }\n\n            .full-height {\n                height: 100vh;\n            }\n\n            .flex-center {\n                align-items: center;\n                display: flex;\n                justify-content: center;\n            }\n\n            .position-ref {\n                position: relative;\n            }\n\n            .code {\n                border-right: 2px solid;\n                font-size: 26px;\n                padding: 0 15px 0 15px;\n                text-align: center;\n            }\n\n            .message {\n                font-size: 18px;\n                text-align: center;\n            }\n        </style>\n    </head>\n    <body>\n        <div class=\"flex-center position-ref full-height\">\n            <div class=\"code\">\n                429            </div>\n            <div class=\"message\" style=\"padding: 10px;\">\n                Too Many Requests            </div>\n        </div>\n    </body>\n</html>"
+						}
+					]
+				},
+				{
+					"name": "Content With Wrong Structure",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/create/{{employeeID}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"create",
+								"{{employeeID}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Content With Wrong Structure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/create/{{employeeID}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"create",
+										"{{employeeID}"
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 25 Feb 2023 08:05:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "allow",
+									"value": "GET, HEAD"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Upgrade",
+									"value": "h2,h2c"
+								},
+								{
+									"key": "Connection",
+									"value": "Upgrade"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "host-header",
+									"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+								},
+								{
+									"key": "X-Endurance-Cache-Level",
+									"value": "2"
+								},
+								{
+									"key": "X-nginx-cache",
+									"value": "WordPress"
+								},
+								{
+									"key": "Content-Length",
+									"value": "522"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta name=\"robots\" content=\"noindex,nofollow,noarchive\" />\n        <title>An Error Occurred: Method Not Allowed</title>\n        <style>body { background-color: #fff; color: #222; font: 16px/1.5 -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif; margin: 0; }\n.container { margin: 30px; max-width: 600px; }\nh1 { color: #dc3545; font-size: 24px; }\nh2 { font-size: 18px; }</style>\n    </head>\n    <body>\n        <div class=\"container\">\n            <h1>Oops! An Error Occurred</h1>\n            <h2>The server returned a \"405 Method Not Allowed\".</h2>\n            <p>\n        Something is broken. Please let us know what you were doing when this error occurred.\n        We will fix it as soon as possible. Sorry for any inconvenience caused.\n    </p>\n        </div>\n    </body>\n</html>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Get Single Employee Data",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/employee/:id",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"employee",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Single Employee Data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/employee/:id",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"employee",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 25 Feb 2023 09:14:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.21.6"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "157"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=21600"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Expires",
+							"value": "Sat, 25 Feb 2023 15:14:42 GMT"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "host-header",
+							"value": "c2hhcmVkLmJsdWVob3N0LmNvbQ=="
+						},
+						{
+							"key": "X-Endurance-Cache-Level",
+							"value": "2"
+						},
+						{
+							"key": "X-nginx-cache",
+							"value": "WordPress"
+						},
+						{
+							"key": "X-Server-Cache",
+							"value": "false"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"id\": 2,\n        \"employee_name\": \"Garrett Winters\",\n        \"employee_salary\": 170750,\n        \"employee_age\": 63,\n        \"profile_image\": \"\"\n    },\n    \"message\": \"Successfully! Record has been fetched.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Employees Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/employees?data:employee_age=61",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"employees"
+					],
+					"query": [
+						{
+							"key": "data:employee_age",
+							"value": "61"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseUrl",
+			"value": "\thttps://dummy.restapiexample.com/api/v1"
+		}
+	]
+}
